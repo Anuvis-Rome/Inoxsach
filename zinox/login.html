@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de Sesión</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 50px;
+        }
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            display: inline-block;
+            width: 100%;
+            max-width: 400px;
+        }
+        input {
+            padding: 10px;
+            margin: 10px 0;
+            width: calc(100% - 22px);
+            box-sizing: border-box;
+        }
+        button {
+            background: #000;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #bd0101;
+        }
+        .checkbox-container {
+            text-align: left;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        .checkbox-container input {
+            vertical-align: middle;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="loginForm">
+        <form id="login" onsubmit="return validateLogin()">
+            <h2>Inicia Sesión</h2>
+            <input type="text" id="username" placeholder="Usuario" required autocomplete="off">
+            <input type="password" id="password" placeholder="Contraseña" required autocomplete="off">
+            <div class="checkbox-container">
+                <input type="checkbox" id="showPasswordCheckbox"> <label for="showPasswordCheckbox">Mostrar Contraseña</label>
+            </div>
+            <button type="submit">Ingresar</button>
+        </form>
+    </div>
+
+    <script>
+        function validateLogin() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            const validUsername = 'usuario1';
+            const validPassword = 'contraseña123';
+
+            if (username === validUsername && password === validPassword) {
+                window.location.href = 'Proy2.html'; 
+                return false;
+            } else {
+                alert('Usuario o contraseña incorrectos');
+                document.getElementById('username').value = ''; // Limpiar campo de usuario
+                document.getElementById('password').value = ''; // Limpiar campo de contraseña
+                return false;
+            }
+        }
+
+        document.getElementById('showPasswordCheckbox').addEventListener('change', function() {
+            const passwordField = document.getElementById('password');
+            if (this.checked) {
+                passwordField.type = 'text'; // Mostrar contraseña
+            } else {
+                passwordField.type = 'password'; // Ocultar contraseña
+            }
+        });
+    </script>
+</body>
+</html>
